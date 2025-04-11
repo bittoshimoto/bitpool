@@ -252,7 +252,11 @@ class Server {
       }
       if (config.FIAT_PRICE.ENABLED) {
         priceUpdater.$run();
+        setInterval(() => {
+          priceUpdater.$run();
+        }, 60 * 60 * 1000); // every 5 minutes
       }
+      
 
       // rerun immediately if we skipped the mempool update, otherwise wait POLL_RATE_MS
       const elapsed = Date.now() - start;

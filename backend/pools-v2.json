@@ -1,0 +1,114 @@
+[
+  {
+    "id": "norhash-solo",
+    "name": "Norhash.com [SOLO]",
+    "url": "https://norhash.com",
+    "country": "RU",
+    "type": "SOLO"
+  },
+  {
+    "id": "mining-dutch",
+    "name": "Mining-Dutch.nl",
+    "url": "https://mining-dutch.nl",
+    "country": "WL",
+    "type": "D-PPS, PROP, SOLO"
+  },
+  {
+    "id": "poolsexy-solo",
+    "name": "Pool.sexy [SOLO]",
+    "url": "https://pool.sexy",
+    "country": "DE",
+    "type": "SOLO"
+  },
+  {
+    "id": "zergpool",
+    "name": "Zergpool.com",
+    "url": "https://zergpool.com",
+    "country": "WL",
+    "type": "PROP"
+  },
+  {
+    "id": "zpool",
+    "name": "Zpool.ca",
+    "url": "https://zpool.ca",
+    "country": "WL",
+    "type": "PROP"
+  },
+  {
+    "id": "minorpool-solo",
+    "name": "Minorpool.com [SOLO]",
+    "url": "https://minorpool.com",
+    "country": "TR",
+    "type": "SOLO"
+  },
+  {
+    "id": "hulkhash",
+    "name": "Hulkhash.uk",
+    "url": "https://hulkhash.uk",
+    "country": "GB",
+    "type": "PROP"
+  },
+  {
+    "id": "go-poolmining-solo",
+    "name": "Go-PoolMining.com [SOLO]",
+    "url": "https://go-poolmining.com",
+    "country": "DE",
+    "type": "SOLO"
+  },
+  {
+    "id": "nitopool",
+    "name": "Nitopool.fr",
+    "url": "https://nitopool.fr",
+    "country": "DE",
+    "type": "PPLNS"
+  },
+  {
+    "id": "norhash-pplns",
+    "name": "Norhash.com",
+    "url": "https://norhash.com",
+    "country": "RU",
+    "type": "PPLNS"
+  },
+  {
+    "id": "nitopool-solo",
+    "name": "Nitopool.fr [SOLO]",
+    "url": "https://nitopool.fr",
+    "country": "DE",
+    "type": "SOLO"
+  },
+  {
+    "id": "poolsexy",
+    "name": "Pool.sexy",
+    "url": "https://pool.sexy",
+    "country": "DE",
+    "type": "SPLNS"
+  },
+  {
+    "id": "minorpool",
+    "name": "Minorpool.com",
+    "url": "https://minorpool.com",
+    "country": "TR",
+    "type": "PROP"
+  },
+  {
+    "id": "bowserlab",
+    "name": "Bowserlab.ddns.net",
+    "url": "http://bowserlab.ddns.net",
+    "country": "AT",
+    "type": "PROP, SOLO"
+  },
+  {
+    "id": "asic-miners",
+    "name": "Asic-miners.eu",
+    "url": "https://asic-miners.eu",
+    "country": "CA",
+    "type": "PPLNS"
+  },
+  {
+    "id": "kriptokyng",
+    "name": "Kriptokyng.com",
+    "url": "https://kriptokyng.com",
+    "country": "US",
+    "type": "PPLNS"
+  }
+]
