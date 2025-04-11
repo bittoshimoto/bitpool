@@ -33,7 +33,7 @@ interface DiffShape {
   expected: boolean;
 }
 
-const EPOCH_BLOCK_LENGTH = 2016; // Bitcoin mainnet
+const EPOCH_BLOCK_LENGTH = 10; // Bit mainnet
 
 @Component({
   selector: 'app-difficulty',
@@ -103,7 +103,7 @@ export class DifficultyComponent implements OnInit {
         }
 
         const blocksUntilHalving = 210000 - (maxHeight % 210000);
-        const timeUntilHalving = new Date().getTime() + (blocksUntilHalving * 600000);
+        const timeUntilHalving = new Date().getTime() + (blocksUntilHalving * 60000);
         const newEpochStart = Math.floor(this.stateService.latestBlockHeight / EPOCH_BLOCK_LENGTH) * EPOCH_BLOCK_LENGTH;
         const newExpectedHeight = Math.floor(newEpochStart + da.expectedBlocks);
         this.now = new Date().getTime();
@@ -113,41 +113,40 @@ export class DifficultyComponent implements OnInit {
           this.mode = 'halving';
         }
 
-        if (newEpochStart !== this.epochStart || newExpectedHeight !== this.expectedHeight || this.currentHeight !== this.stateService.latestBlockHeight) {
-          this.epochStart = newEpochStart;
-          this.expectedHeight = newExpectedHeight;
-          this.currentHeight = this.stateService.latestBlockHeight;
-          this.currentIndex = this.currentHeight - this.epochStart;
-          this.expectedIndex = Math.min(this.expectedHeight - this.epochStart, 2016) - 1;
-          this.difference = this.currentIndex - this.expectedIndex;
+if (newEpochStart !== this.epochStart || newExpectedHeight !== this.expectedHeight || this.currentHeight !== this.stateService.latestBlockHeight) {
+  this.epochStart = newEpochStart;
+  this.expectedHeight = newExpectedHeight;
+  this.currentHeight = this.stateService.latestBlockHeight;
+  this.currentIndex = this.currentHeight - this.epochStart;
+  this.expectedIndex = Math.min(this.expectedHeight - this.epochStart, 10) - 1;
+  this.difference = this.currentIndex - this.expectedIndex;
 
-          this.shapes = [];
-          this.shapes = this.shapes.concat(this.blocksToShapes(
-            0, Math.min(this.currentIndex, this.expectedIndex), 'mined', true
-          ));
-          this.shapes = this.shapes.concat(this.blocksToShapes(
-            this.currentIndex + 1, this.expectedIndex, 'behind', true
-          ));
-          this.shapes = this.shapes.concat(this.blocksToShapes(
-            this.expectedIndex + 1, this.currentIndex, 'ahead', false
-          ));
-          if (this.currentIndex < 2015) {
-            this.shapes = this.shapes.concat(this.blocksToShapes(
-              this.currentIndex + 1, this.currentIndex + 1, 'next', (this.expectedIndex > this.currentIndex)
-            ));
-          }
-          this.shapes = this.shapes.concat(this.blocksToShapes(
-            Math.max(this.currentIndex + 2, this.expectedIndex + 1), 2105, 'remaining', false
-          ));
-        }
+  this.shapes = [];
+  this.shapes = this.shapes.concat(this.blocksToShapes(
+    0, Math.min(this.currentIndex, this.expectedIndex), 'mined', true
+  ));
+  this.shapes = this.shapes.concat(this.blocksToShapes(
+    this.currentIndex + 1, this.expectedIndex, 'behind', true
+  ));
+  this.shapes = this.shapes.concat(this.blocksToShapes(
+    this.expectedIndex + 1, this.currentIndex, 'ahead', false
+  ));
+  if (this.currentIndex < 9) { // changed from 2015 to 9
+    this.shapes = this.shapes.concat(this.blocksToShapes(
+      this.currentIndex + 1, this.currentIndex + 1, 'next', (this.expectedIndex > this.currentIndex)
+    ));
+  }
+  this.shapes = this.shapes.concat(this.blocksToShapes(
+    Math.max(this.currentIndex + 2, this.expectedIndex + 1), 15, 'remaining', false // changed from 2105 to 15
+  ));
+}
 
-
-        let retargetDateString;
-        if (da.remainingBlocks > 1870) {
-          retargetDateString = (new Date(da.estimatedRetargetDate)).toLocaleDateString(this.locale, { month: 'long', day: 'numeric' });
-        } else {
-          retargetDateString = (new Date(da.estimatedRetargetDate)).toLocaleTimeString(this.locale, { month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' });
-        }
+let retargetDateString;
+if (da.remainingBlocks > 9) { // changed from 1870 to 9
+  retargetDateString = (new Date(da.estimatedRetargetDate)).toLocaleDateString(this.locale, { month: 'long', day: 'numeric' });
+} else {
+  retargetDateString = (new Date(da.estimatedRetargetDate)).toLocaleTimeString(this.locale, { month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' });
+}
 
         const data = {
           base: `${da.progressPercent.toFixed(2)}%`,
@@ -243,7 +242,7 @@ function getNextBlockSubsidy(height: number): number {
     return 0;
   }
 
-  let subsidy = BigInt(50 * 100_000_000);
+  let subsidy = BigInt(5 * 100_000_000);
   // Subsidy is cut in half every 210,000 blocks which will occur approximately every 4 years.
   subsidy >>= BigInt(halvings);
   return Number(subsidy);

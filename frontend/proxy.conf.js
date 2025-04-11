@@ -12,10 +12,10 @@ try {
 } catch (e) {
     console.log(e);
     if (e.code !== 'ENOENT') {
-      throw new Error(e);
-  } else {
-      console.log(`${CONFIG_FILE_NAME} file not found, using default config`);
-  }
+        throw new Error(e);
+    } else {
+        console.log(`${CONFIG_FILE_NAME} file not found, using default config`);
+    }
 }
 
 PROXY_CONFIG = [
@@ -26,56 +26,40 @@ PROXY_CONFIG = [
         '!/liquidtestnet', '!/liquidtestnet/**', '!/liquidtestnet/',
         '/testnet/api/**', '/signet/api/**', '/testnet4/api/**'
         ],
-        target: "https://mempool.space",
+        target: "http://127.0.0.1:8999",
         ws: true,
         secure: false,
         changeOrigin: true
     },
     {
         context: ['/api/v1/ws'],
-        target: "https://mempool.space",
+        target: "http://127.0.0.1:8999",
         ws: true,
         secure: false,
         changeOrigin: true,
     },
     {
-        context: ['/api/liquid**', '/liquid/api/**'],
-        target: "https://liquid.network",
-        pathRewrite: {
-            "^/api/liquid/": "/liquid/api"
-        },
-        ws: true,
+        context: ['/resources/mining-pools/**'],
+        target: "http://127.0.0.1:8999",
         secure: false,
         changeOrigin: true
-    },
-    {
-        context: ['/api/liquidtestnet**', '/liquidtestnet/api/**'],
-        target: "https://liquid.network",
-        ws: true,
-        secure: false,
-        changeOrigin: true
-    },
-    {
-      context: ['/resources/mining-pools/**'],
-      target: "https://mempool.space",
-      secure: false,
-      changeOrigin: true
-  }
+    }
 ];
 
+// Liquid part: optional
 if (configContent && configContent.BASE_MODULE == "liquid") {
     PROXY_CONFIG.push({
         context: [
             '/resources/assets.json', '/resources/assets.minimal.json',
             '/resources/assets-testnet.json', '/resources/assets-testnet.minimal.json'],
-        target: "https://liquid.network",
+        target: "http://127.0.0.1:8999",
         secure: false,
         changeOrigin: true,
     });
 } else {
     PROXY_CONFIG.push({
         context: ['/resources/assets.json', '/resources/assets.minimal.json', '/resources/worldmap.json'],
-        target: "https://mempool.space",
+        target: "http://127.0.0.1:8999",
         secure: false,
         changeOrigin: true,
     });

@@ -5,14 +5,14 @@
 
     <ul ngbNav #nav="ngbNav" [animation]="false" [(activeId)]="activeTab" class="nav-tabs" role="tablist">
 
-      <li [ngbNavItem]="0" *ngIf="showFaqTab" role="presentation">
+      <!-- <li [ngbNavItem]="0" *ngIf="showFaqTab" role="presentation">
         <a ngbNavLink [routerLink]="['/docs/faq' | relativeUrl]" role="tab">FAQ</a>
         <ng-template ngbNavContent>
 
           <app-api-docs [whichTab]="'faq'"></app-api-docs>
 
         </ng-template>
-      </li>
+      </li> -->
 
       <li [ngbNavItem]="1" role="presentation">
         <a ngbNavLink [routerLink]="['/docs/api/rest' | relativeUrl]" role="tab">API - REST</a>

@@ -15,7 +15,7 @@ export class DocsComponent implements OnInit {
   activeTab = 0;
   env: Env;
   showWebSocketTab = true;
-  showFaqTab = true;
+  showFaqTab = false;
   showElectrsTab = true;
 
   @HostBinding('attr.dir') dir = 'ltr';
